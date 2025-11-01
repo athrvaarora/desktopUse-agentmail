@@ -450,6 +450,14 @@ Example: "navigate to input page"
         console.log(`[HTTP] Server listening on port ${HTTP_PORT}`);
         console.log(`[HTTP] Chat endpoint: http://localhost:${HTTP_PORT}/api/chat`);
         console.log(`[HTTP] Health check: http://localhost:${HTTP_PORT}/health`);
+        
+        // Increase timeout for complex multi-step operations (default is 2 minutes)
+        if (this.server) {
+          this.server.timeout = 180000; // 3 minutes for complex photo editing workflows
+          this.server.keepAliveTimeout = 185000; // Slightly higher than timeout
+          console.log('[HTTP] Server timeout set to 3 minutes for multi-step operations');
+        }
+        
         resolve(this.server!);
       });
     });
