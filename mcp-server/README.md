@@ -47,7 +47,8 @@ Add to `~/Library/Application Support/Claude/claude_desktop_config.json` (macOS)
 
 ### Environment Variables
 
-- `WEBSOCKET_PORT` - WebSocket port for desktop app connections (default: 8080)
+- `HTTP_PORT` - Port for both HTTP and WebSocket (default: 8080)
+- `ANTHROPIC_API_KEY` - Required for /api/chat endpoint (Claude API)
 
 ## 🏗️ How It Works
 
@@ -121,10 +122,13 @@ AI executes:
 
 1. Create a new Repl
 2. Import this repository
-3. Set environment variables:
-   - `WEBSOCKET_PORT=8080`
+3. Set environment variables in Replit Secrets:
+   - `HTTP_PORT=8080` (Replit only exposes port 8080 externally)
+   - `ANTHROPIC_API_KEY=sk-ant-api03-...` (your Claude API key)
 4. Run: `npm install && npm run build && npm start`
-5. Connect your desktop app to the Replit WebSocket URL
+5. Both HTTP and WebSocket will be available on the same port
+6. Connect your app to: `wss://your-repl.replit.app`
+7. Chat API available at: `https://your-repl.replit.app/api/chat`
 
 ### Docker
 
