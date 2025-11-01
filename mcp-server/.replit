@@ -1,0 +1,14 @@
+# Replit Configuration
+run = "npm start"
+entrypoint = "src/index.ts"
+
+[nix]
+channel = "stable-23_11"
+
+[deployment]
+run = ["sh", "-c", "npm install && npm run build && npm start"]
+deploymentTarget = "cloudrun"
+
+[[ports]]
+localPort = 8080
+externalPort = 80
