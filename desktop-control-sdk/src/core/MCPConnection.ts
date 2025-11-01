@@ -109,34 +109,59 @@ export class MCPConnection {
   }
 
   /**
-   * Send UI state to MCP server periodically
+   * Send UI state to MCP server only when it changes
    */
   private startUISync(): void {
     this.stopTimer(this.syncTimer);
 
-    this.syncTimer = setInterval(() => {
+    let lastUIStateHash = '';
+
+    // Function to compute simple hash of UI state
+    const hashUIState = (state: any): string => {
+      return JSON.stringify({
+        count: state.components?.length || 0,
+        ids: state.components?.map((c: any) => c.id).sort() || [],
+        visible: state.currentlyVisible?.sort() || []
+      });
+    };
+
+    // Subscribe to component registry changes
+    const sendUIStateIfChanged = () => {
       if (!this.isConnected()) return;
 
       try {
         const uiState = componentRegistry.exportForLLM();
-        const message = {
-          type: 'ui_state',
-          data: {
-            ...uiState,
-            timestamp: Date.now(),
-          },
-        };
+        const currentHash = hashUIState(uiState);
 
-        this.send(message);
+        // Only send if UI state actually changed
+        if (currentHash !== lastUIStateHash) {
+          lastUIStateHash = currentHash;
+          
+          const message = {
+            type: 'ui_state',
+            data: {
+              ...uiState,
+              timestamp: Date.now(),
+            },
+          };
+
+          this.send(message);
+          console.log('[MCPConnection] UI state changed, sent update');
+        }
       } catch (error) {
         console.error('[MCPConnection] Error syncing UI state:', error);
         this.options.onError?.(error as Error);
       }
-    }, this.options.syncInterval);
+    };
+
+    // Check for changes periodically
+    this.syncTimer = setInterval(sendUIStateIfChanged, this.options.syncInterval);
 
     // Send immediately on connect
     try {
       const uiState = componentRegistry.exportForLLM();
+      lastUIStateHash = hashUIState(uiState);
+      
       this.send({
         type: 'ui_state',
         data: {
@@ -144,6 +169,7 @@ export class MCPConnection {
           timestamp: Date.now(),
         },
       });
+      console.log('[MCPConnection] Sent initial UI state');
     } catch (error) {
       console.error('[MCPConnection] Error sending initial UI state:', error);
       this.options.onError?.(error as Error);

@@ -5,6 +5,10 @@
  * Model Context Protocol server for controlling desktop applications
  */
 
+// Load environment variables from .env file
+import { config } from 'dotenv';
+config();
+
 import { Server } from '@modelcontextprotocol/sdk/server/index.js';
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
 import {
@@ -16,21 +20,29 @@ import {
 
 import { ConnectionManager } from './connection.js';
 import { ToolHandlers } from './handlers/tools.js';
+import { HTTPServer } from './http-server.js';
 import { toolDefinitions } from './tools.js';
 
 const WEBSOCKET_PORT = parseInt(process.env.WEBSOCKET_PORT || '8080', 10);
+const HTTP_PORT = parseInt(process.env.HTTP_PORT || '3001', 10);
 const SERVER_NAME = 'desktop-ui-control';
 const SERVER_VERSION = '1.0.0';
 
 async function main() {
-  console.error('[MCP] Starting Desktop UI Control Server...');
+  console.error('[Desktop.use] Starting server...');
+  console.error('[Desktop.use] WebSocket Port:', WEBSOCKET_PORT);
+  console.error('[Desktop.use] HTTP Port:', HTTP_PORT);
 
-  // Initialize WebSocket server for desktop app connections
+  // Initialize WebSocket server for browser connections
   const connectionManager = new ConnectionManager(WEBSOCKET_PORT);
   await connectionManager.start();
 
   // Initialize tool handlers
   const toolHandlers = new ToolHandlers(connectionManager);
+
+  // Initialize HTTP server for chat API
+  const httpServer = new HTTPServer(connectionManager, toolHandlers);
+  await httpServer.start();
 
   // Create MCP server
   const server = new Server(
@@ -199,11 +211,17 @@ async function main() {
 
   // Handle graceful shutdown
   process.on('SIGINT', async () => {
-    console.error('[MCP] Shutting down...');
+    console.error('[Desktop.use] Shutting down...');
+    httpServer.stop();
     connectionManager.stop();
     await server.close();
     process.exit(0);
   });
+
+  console.error('[Desktop.use] Server ready!');
+  console.error('[Desktop.use] 🌐 Chat API: http://localhost:' + HTTP_PORT + '/api/chat');
+  console.error('[Desktop.use] 🔌 WebSocket: ws://localhost:' + WEBSOCKET_PORT);
+  console.error('[Desktop.use] ✅ Ready for browser connections...');
 }
 
 main().catch((error) => {

@@ -128,19 +128,26 @@ export const useNavigation = (options: UseNavigationOptions) => {
     });
   }, [id]);
 
-  return {
-    // Ref to attach to DOM element (callback ref to properly capture DOM elements)
+  // Return object with ref and data attributes for spreading on DOM elements
+  // Utility functions are returned separately to avoid React warnings
+  const domProps = {
     ref: callbackRef,
-    
-    // Utility functions
-    updateMetadata,
-    setVisible,
-    setLoading,
-    
-    // Data attribute for HTML element
     'data-nav-id': id,
     'data-nav-type': type,
     'data-nav-label': label,
+  };
+
+  // Add utility functions as non-enumerable properties to avoid spreading
+  Object.defineProperties(domProps, {
+    updateMetadata: { value: updateMetadata, enumerable: false },
+    setVisible: { value: setVisible, enumerable: false },
+    setLoading: { value: setLoading, enumerable: false },
+  });
+
+  return domProps as typeof domProps & {
+    updateMetadata: typeof updateMetadata;
+    setVisible: typeof setVisible;
+    setLoading: typeof setLoading;
   };
 };
 

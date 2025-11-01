@@ -141,6 +141,9 @@ export class NavigationEngine {
 
       default:
         // Try custom actions before failing
+        console.log(`[NavigationEngine] Looking for custom action: ${action} on ${component.id}`);
+        console.log(`[NavigationEngine] Component stateSetters:`, Object.keys(component.stateSetters || {}));
+        
         if (component.stateSetters && typeof component.stateSetters[action] === 'function') {
           console.log(`[NavigationEngine] Executing custom action: ${action} on ${component.id}`);
           try {
@@ -155,7 +158,7 @@ export class NavigationEngine {
           }
         }
         
-        console.warn(`[NavigationEngine] Unknown action: ${action}`);
+        console.warn(`[NavigationEngine] Unknown action: ${action}, no custom handler found`);
         return false;
     }
   }
