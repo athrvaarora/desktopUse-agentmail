@@ -4,6 +4,7 @@
  */
 
 import WebSocket, { WebSocketServer } from 'ws';
+import type { Server as HTTPServer } from 'http';
 import type { ClientConnection, UIState, WebSocketMessage } from './types/index.js';
 
 export class ConnectionManager {
@@ -11,14 +12,17 @@ export class ConnectionManager {
   private clients: Map<string, { ws: WebSocket; connection: ClientConnection }> = new Map();
   private currentUIState: UIState | null = null;
 
-  constructor(private port: number = 8080) {}
+  constructor() {}
 
-  start(): Promise<void> {
+  /**
+   * Start WebSocket server on an existing HTTP server (for Replit/single port)
+   */
+  startWithHttpServer(httpServer: HTTPServer): Promise<void> {
     return new Promise((resolve) => {
-      this.wss = new WebSocketServer({ port: this.port });
+      this.wss = new WebSocketServer({ server: httpServer });
 
       this.wss.on('listening', () => {
-        console.log(`[WebSocket] Server listening on port ${this.port}`);
+        console.log(`[WebSocket] Server attached to HTTP server`);
         resolve();
       });
 

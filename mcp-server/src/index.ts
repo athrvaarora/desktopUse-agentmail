@@ -23,26 +23,27 @@ import { ToolHandlers } from './handlers/tools.js';
 import { HTTPServer } from './http-server.js';
 import { toolDefinitions } from './tools.js';
 
-const WEBSOCKET_PORT = parseInt(process.env.WEBSOCKET_PORT || '8080', 10);
-const HTTP_PORT = parseInt(process.env.HTTP_PORT || '3001', 10);
+const HTTP_PORT = parseInt(process.env.HTTP_PORT || '8080', 10);
 const SERVER_NAME = 'desktop-ui-control';
 const SERVER_VERSION = '1.0.0';
 
 async function main() {
   console.error('[Desktop.use] Starting server...');
-  console.error('[Desktop.use] WebSocket Port:', WEBSOCKET_PORT);
-  console.error('[Desktop.use] HTTP Port:', HTTP_PORT);
+  console.error('[Desktop.use] Port:', HTTP_PORT);
 
-  // Initialize WebSocket server for browser connections
-  const connectionManager = new ConnectionManager(WEBSOCKET_PORT);
-  await connectionManager.start();
+  // Initialize connection manager
+  const connectionManager = new ConnectionManager();
 
   // Initialize tool handlers
   const toolHandlers = new ToolHandlers(connectionManager);
 
-  // Initialize HTTP server for chat API
+  // Initialize HTTP server for chat API - this creates the HTTP server
   const httpServer = new HTTPServer(connectionManager, toolHandlers);
-  await httpServer.start();
+  const httpServerInstance = await httpServer.start();
+
+  // Attach WebSocket server to the same HTTP server (for Replit single-port deployment)
+  await connectionManager.startWithHttpServer(httpServerInstance);
+  console.error('[Desktop.use] WebSocket attached to HTTP server');
 
   // Create MCP server
   const server = new Server(
@@ -206,7 +207,6 @@ async function main() {
   await server.connect(transport);
 
   console.error('[MCP] Server ready!');
-  console.error(`[MCP] WebSocket listening on port ${WEBSOCKET_PORT}`);
   console.error('[MCP] Waiting for desktop application connections...');
 
   // Handle graceful shutdown
@@ -220,7 +220,8 @@ async function main() {
 
   console.error('[Desktop.use] Server ready!');
   console.error('[Desktop.use] 🌐 Chat API: http://localhost:' + HTTP_PORT + '/api/chat');
-  console.error('[Desktop.use] 🔌 WebSocket: ws://localhost:' + WEBSOCKET_PORT);
+  console.error('[Desktop.use] 🔌 WebSocket: ws://localhost:' + HTTP_PORT);
+  console.error('[Desktop.use] ✅ Both HTTP and WebSocket on port ' + HTTP_PORT);
   console.error('[Desktop.use] ✅ Ready for browser connections...');
 }
 

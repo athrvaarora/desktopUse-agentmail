@@ -7,6 +7,7 @@
 import express from 'express';
 import cors from 'cors';
 import Anthropic from '@anthropic-ai/sdk';
+import type { Server as HTTPServerType } from 'http';
 import type { ConnectionManager } from './connection.js';
 import type { ToolHandlers } from './handlers/tools.js';
 
@@ -25,7 +26,7 @@ interface ChatRequest {
 export class HTTPServer {
   private app: express.Application;
   private anthropic: Anthropic;
-  private server: any;
+  private server: HTTPServerType | null = null;
 
   constructor(
     private connectionManager: ConnectionManager,
@@ -443,15 +444,19 @@ Example: "navigate to input page"
 - Confirm: "✓ Navigated to input page"`;
   }
 
-  start(): Promise<void> {
+  start(): Promise<HTTPServerType> {
     return new Promise((resolve) => {
       this.server = this.app.listen(HTTP_PORT, () => {
         console.log(`[HTTP] Server listening on port ${HTTP_PORT}`);
         console.log(`[HTTP] Chat endpoint: http://localhost:${HTTP_PORT}/api/chat`);
         console.log(`[HTTP] Health check: http://localhost:${HTTP_PORT}/health`);
-        resolve();
+        resolve(this.server!);
       });
     });
+  }
+
+  getServer(): HTTPServerType | null {
+    return this.server;
   }
 
   stop(): void {
