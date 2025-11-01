@@ -1,0 +1,37 @@
+[package]
+authors = ["Daniel Vogelbacher <daniel@chaospixel.com>"]
+edition = "2024"
+name = "dnglab"
+version = "0.7.1"
+description = "Camera RAW to DNG file format converter"
+license = "LGPL-2.1"
+repository = "https://github.com/dnglab/dnglab"
+
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+fern = {version = "0.7", features = ["colored"]}
+log = "0.4"
+tokio = { version = "1.43.1", features = ["full"] }
+dnglab_lib = { path = "dnglab-lib" }
+
+[build-dependencies]
+clap_mangen = "0.2.15"
+clap_complete = "4.4.4"
+dnglab_lib = { path = "dnglab-lib" }
+
+[package.metadata.deb]
+maintainer = "Daniel Vogelbacher <daniel@chaospixel.com>"
+license-file = ["../../LICENSE", "0"]
+extended-description = """\
+Utility for converting digital camera RAW format files\
+into Digital Negatives (DNG)."""
+section = "graphics"
+priority = "optional"
+assets = [
+    ["target/release/dnglab", "usr/bin/", "755"],
+    ["manpages/*", "usr/share/man/man1/", "644"],
+    ["completions/*.bash", "usr/share/bash-completion/completions/", "644"]
+]
+

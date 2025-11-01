@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<component type="desktop-application">
+  <id>io.github.CyberTimon.RapidRAW</id>
+
+  <name>RapidRAW</name>
+  <summary>A non-destructive, and GPU-accelerated RAW image editor built with performance in mind</summary>
+  <developer id="io.github.CyberTimon">
+    <name>Timon Käch</name>
+  </developer>
+
+  <metadata_license>FSFAP</metadata_license>
+  <project_license>AGPL-3.0-only</project_license>
+
+  <supports>
+    <control>pointing</control>
+    <control>keyboard</control>
+    <control>touch</control>
+  </supports>
+
+  <description>
+    <p>
+      RapidRAW is a modern, high-performance alternative to Adobe Lightroom®. It delivers a simple, beautiful editing experience in a lightweight package (under 20MB) for Windows, macOS, and Linux.
+    </p>
+    <p>
+      I developed this project as a personal challenge at the age of 18. My goal was to create a high-performance tool for my own photography workflow while deepening my understanding of both React and Rust, with the support from Google Gemini.
+    </p>
+  </description>
+
+  <launchable type="desktop-id">io.github.CyberTimon.RapidRAW.desktop</launchable>
+  <screenshots>
+    <screenshot type="default">
+      <image>https://raw.githubusercontent.com/CyberTimon/RapidRAW/refs/tags/v1.4.2/.github/assets/editor.png</image>
+        <caption>Editor interface</caption>
+    </screenshot>
+  </screenshots>
+
+  <content_rating type="oars-1.1"/>
+  <url type="homepage">https://github.com/CyberTimon/RapidRAW</url>
+
+  <releases>
+    <release version="v1.4.3" date="2025-10-19">
+        <url type="details">https://github.com/CyberTimon/RapidRAW/releases/tag/v1.4.3</url>
+        <description translate="no">
+            <p>New Features</p>
+            <ul>
+                <li>Pin Folders: Tired of constantly navigating between folders on different drives? Now you can right click any folder to pin it to a dedicated section in the sidebar for quick access.</li>
+                <li>Apply Presets To Masks: Apply any saved preset directly to a mask. This is a huge time saver for applying targeted adjustments like a "Clarity Boost" to a subject mask.</li>
+                <li>Centré Adjustment: A new slider that acts like an inverted vignette, subtly boosting clarity, brightness, and contrast in the middle of the frame to draw attention to your subject.</li>
+                <li>Whole Image Mask Type: Added a new mask type that covers the entire image, useful as a base for subtracting or inverting other mask components. This also lays the groundwork for future mask types without cluttering the UI.</li>
+            </ul>
+            <p>Core Improvements</p>
+            <ul>
+                <li>Library thumbnail updating is now much smoother.</li>
+                <li>Rawler is now a submodule, thanks to @william-sy.</li>
+                <li>The logger has been improved to output the full traceback for better debugging.</li>
+            </ul>
+        </description>
+    </release>
+    <release version="v1.4.2" date="2025-10-11">
+        <url type="details">https://github.com/CyberTimon/RapidRAW/releases/tag/v1.4.2</url>
+        <description translate="no">
+            <p>Exposure and Highlights Improvements</p>
+            <ul>
+                <li>Completely reworked Exposure and Highlights sliders for more natural, realistic image adjustments.</li>
+                <li>Exposure adjustments now feature smoother rolloff and prevent oversaturation.</li>
+                <li>Highlights recovery produces significantly better detail and tonal balance.</li>
+            </ul>
+            <p>Watermarking Support</p>
+            <ul>
+                <li>Added a new Watermark feature in the export panel.</li>
+                <li>Users can add custom logos or branding to exported images.</li>
+                <li>Full control over position, anchor, scale, spacing, and opacity.</li>
+            </ul>
+            <p>Other Improvements</p>
+            <ul>
+                <li>Various bug fixes and better crash handling.</li>
+                <li>Thumbnails in the filmstrip now update more smoothly.</li>
+            </ul>
+        </description>
+    </release>
+    <release version="v1.4.1" date="2025-09-28">
+        <url type="details">https://github.com/CyberTimon/RapidRAW/releases/tag/v1.4.1</url>
+        <description translate="no">
+            <p>Performance Hotfix</p>
+            <p>Version 1.4.1 addresses critical performance issues introduced in v1.4.0, where using local contrast tools could cause severe slowdowns and even crashes.</p>
+            <p>I strongly recommend skipping v1.4.0 and upgrading directly to v1.4.1.</p>
+        </description>
+    </release>
+    <release version="v1.4.0" date="2025-09-28">
+        <url type="details">https://github.com/CyberTimon/RapidRAW/releases/tag/v1.4.0</url>
+        <description translate="no">
+            <p>This update introduces several new tools and foundational improvements to the software.</p>
+            <p>New Features</p>
+            <ul>
+                <li>Auto Culling: Scans your selection for duplicates and blurry photos, then lets you flag or delete them in a batch to speed up your workflow.</li>
+                <li>Collage Maker: An integrated collage maker with multiple layouts, allowing you to control spacing, border radius, and background color.</li>
+                <li>Color Calibration: A new panel to directly modify the hue and saturation of the primary RGB channels, enabling more significant and stylized color shifts.</li>
+                <li>Universal Preset Importer: Import presets from other common photo editors. While not a 1:1 conversion, it provides a solid starting point for your edits.</li>
+                <li>Adjustments Visibility: A new setting lets you hide advanced adjustments you don't use, allowing you to maintain a simpler interface.</li>
+                <li>Sort Library by EXIF Data: Organize your photo library by ISO, aperture, focal length, and other EXIF tags.</li>
+            </ul>
+            <p>Core Improvements</p>
+            <ul>
+                <li>Reworked Local Contrast Tools: The local contrast tools (Sharpness, Clarity, Structure) have been re-engineered to provide higher quality results and interact more predictably with other adjustments like exposure.</li>
+                <li>Improved performance when loading library folders.</li>
+                <li>Various shader optimizations and bug fixes.</li>
+                <li>General improvements to application stability and logging.</li>
+                <li>Brand new app icons &amp; dark theme wallpaper.</li>
+            </ul>
+            <p>Important: Action Required for Upgrading Users</p>
+            <p>In this update, the application's internal identifier has been changed from <code>com.rapidraw.app</code> to <code>io.github.CyberTimon.RapidRAW</code>. This is a technical but important change that helps with long-term maintenance and ensures better compatibility going forward.</p>
+            <p>Unfortunately, this means that when you first launch v1.4.0, it won't be able to find your existing user data. As a result:</p>
+            <ul>
+                <li>Your AI models will need to be redownloaded.</li>
+                <li>Your library thumbnails will be regenerated.</li>
+                <li>Crucially, all of your saved presets will be gone.</li>
+            </ul>
+            <p>To avoid losing your data, please choose one of the migration options below before you launch the new version for the first time.</p>
+            <p>Option A: Full Migration (Recommended)</p>
+            <p>This method migrates everything: your settings, presets, and cached data. To do this, you'll need to manually rename the application's data folder.</p>
+            <ul>
+                <li>Linux: The location can vary, but typically check <code>~/.config/</code> and <code>~/.local/share/</code>. Rename the <code>com.rapidraw.app</code> folder in each relevant location to <code>io.github.CyberTimon.RapidRAW</code>.</li>
+            </ul>
+            <p>Option B: Migrate Presets Only</p>
+            <p>If you only care about saving your presets and don't mind re-caching thumbnails and models, this is a simpler alternative.</p>
+            <ol>
+                <li>In your old version of RapidRAW, export all your presets to a safe location.</li>
+                <li>Install and open RapidRAW v1.4.0.</li>
+                <li>Import your presets using the new Universal Preset Importer.</li>
+            </ol>
+            <p>I sincerely apologize for the inconvenience this one-time migration step causes. This change was a tough decision, but it sets the app up for a more stable and robust future. Thank you for your understanding!</p>
+        </description>
+    </release>
+    <release version="v1.3.13" date="2025-09-14">
+        <url type="details">https://github.com/CyberTimon/RapidRAW/releases/tag/v1.3.13</url>
+        <description translate="no">
+            <p>Community Presets Sharing</p>
+            <p>I wanted to create a place where people can share presets with each other, so I've added a new Community Presets page. To get things started, I've already shared 7 of my own. I'm looking forward to seeing what you all come up with.</p>
+            <p>To submit your own preset, please follow the submission guide located at the bottom of the Community Presets page.</p>
+            <p>Generative AI Improvements</p>
+            <p>This release includes a new ComfyUI workflow that handles high-quality inpainting much better. The results should now be nearly the same resolution as the original image. The installation for the workflow is also simpler, now requiring only one custom ComfyUI node.</p>
+            <p>I've also adjusted the UI to better align with the project's AI Roadmap. This includes a placeholder for a planned future cloud service, which would be an option for those who don't have the hardware to self-host or prefer not to set it up themselves (not paywalling features).</p>
+            <p>If you have any ideas or feedback on the AI roadmap, feel free to let me know.</p>
+            <p>Info</p>
+            <p>Upgrading to this version will reset the app’s settings &amp; comfyui config (your edits will not be affected).</p>
+        </description>
+    </release>
+    <release version="v1.3.12" date="2025-09-09">
+        <url type="details">https://github.com/CyberTimon/RapidRAW/releases/tag/v1.3.12</url>
+        <description translate="no">
+            <p>Clipping Warnings</p>
+            <p>You can now toggle clipping warnings in the Curves tool to highlight overexposed areas in red and underexposed areas in blue.</p>
+            <p>Update Notifier</p>
+            <p>With the new update notifier, you’ll never miss an update.</p>
+            <p>Other Improvements</p>
+            <ul>
+                <li>Updated all dependencies and migrated from Rust 2021 to Rust 2024 (thanks @RayJW).</li>
+                <li>Improved performance through updated dependencies.</li>
+                <li>Enhanced accuracy in the HSL panel.</li>
+                <li>Fixed the inverted tint slider (you may need to readjust existing edits).</li>
+            </ul>
+        </description>
+    </release>
+    <release version="v1.3.11" date="2025-08-31">
+        <url type="details">https://github.com/CyberTimon/RapidRAW/releases/tag/v1.3.11</url>
+        <description translate="no">
+            <p>ComfyUI Integration</p>
+            <p>ComfyUI integration has been significantly improved to make it more accessible and user-friendly. You can now:</p>
+            <ul>
+                <li>Select a custom inpainting workflow or use the built-in default workflow.</li>
+                <li>Define and map which models should be loaded.</li>
+                <li>See which custom nodes you need to install, in order to use the default workflow.</li>
+            </ul>
+            <p>RapidRAW automatically handles downscaling, mask generation, patch layer composition, and saving. These enhancements make ComfyUI integration practical for everyday use.</p>
+            <p>Note: Some bugs and unfinished elements may still be present. Please report any issues you encounter. Also, if you have a better &amp; easier inpainting workflow, please share it with me as I'm not satisfied with the current one.</p>
+            <p>Chromatic Aberration Correction</p>
+            <p>A new tool for chromatic aberration correction has been added.</p>
+            <p>Other Improvements</p>
+            <ul>
+                <li>Changing folders now cancels previous thumbnail generation and folder indexing jobs, preventing performance slowdowns on many machines.</li>
+                <li>LUT's parser is more robust / less error prone now.</li>
+                <li>Mask grow / feather parameter now correctly applies on the final image.</li>
+            </ul>
+        </description>
+    </release>
+    <release version="v1.3.10" date="2025-08-24">
+      <url type="details">https://github.com/CyberTimon/RapidRAW/releases/tag/v1.3.10</url>
+      <description translate="no">
+        <ul>
+          <li>LUTs</li>
+            You can now apply LUTs directly to your images, with support for .cube, .3dl, .png, .jpg, .jpeg, and .tiff files. This makes it easy to add color grading or use a LUT as a creative starting point.
+          <li>Estimated File Size</li>
+            Before exporting, you’ll now see an estimated file size, helping you balance image quality with file size for the best results.
+        </ul>
+      </description>
+    </release>
+  </releases>
+</component>
