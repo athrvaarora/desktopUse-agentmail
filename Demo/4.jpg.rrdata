@@ -1,0 +1,332 @@
+{
+  "version": 1,
+  "rating": 0,
+  "adjustments": {
+    "aiPatches": [],
+    "aspectRatio": 0.6666666666666666,
+    "blacks": 0,
+    "brightness": 0,
+    "centré": 0,
+    "chromaticAberrationBlueYellow": 0,
+    "chromaticAberrationRedCyan": 0,
+    "clarity": 0,
+    "colorCalibration": {
+      "blueHue": 0,
+      "blueSaturation": 0,
+      "greenHue": 0,
+      "greenSaturation": 0,
+      "redHue": 0,
+      "redSaturation": 0,
+      "shadowsTint": 0
+    },
+    "colorGrading": {
+      "balance": 0,
+      "blending": 50,
+      "highlights": {
+        "hue": 0,
+        "luminance": 0,
+        "saturation": 0
+      },
+      "midtones": {
+        "hue": 0,
+        "luminance": 0,
+        "saturation": 0
+      },
+      "shadows": {
+        "hue": 0,
+        "luminance": 0,
+        "saturation": 0
+      }
+    },
+    "colorNoiseReduction": 0,
+    "contrast": 0,
+    "crop": {
+      "height": 3000,
+      "width": 2000,
+      "x": 0,
+      "y": 0
+    },
+    "curves": {
+      "blue": [
+        {
+          "x": 0,
+          "y": 0
+        },
+        {
+          "x": 255,
+          "y": 255
+        }
+      ],
+      "green": [
+        {
+          "x": 0,
+          "y": 0
+        },
+        {
+          "x": 255,
+          "y": 255
+        }
+      ],
+      "luma": [
+        {
+          "x": 0,
+          "y": 0
+        },
+        {
+          "x": 255,
+          "y": 255
+        }
+      ],
+      "red": [
+        {
+          "x": 0,
+          "y": 0
+        },
+        {
+          "x": 255,
+          "y": 255
+        }
+      ]
+    },
+    "dehaze": 0,
+    "enableNegativeConversion": false,
+    "exposure": 0,
+    "filmBaseColor": "#ff8800",
+    "flipHorizontal": false,
+    "flipVertical": false,
+    "grainAmount": 0,
+    "grainRoughness": 50,
+    "grainSize": 25,
+    "highlights": 0,
+    "hsl": {
+      "aquas": {
+        "hue": 0,
+        "luminance": 0,
+        "saturation": 0
+      },
+      "blues": {
+        "hue": 0,
+        "luminance": 0,
+        "saturation": 0
+      },
+      "greens": {
+        "hue": 0,
+        "luminance": 0,
+        "saturation": 0
+      },
+      "magentas": {
+        "hue": 0,
+        "luminance": 0,
+        "saturation": 0
+      },
+      "oranges": {
+        "hue": 0,
+        "luminance": 0,
+        "saturation": 0
+      },
+      "purples": {
+        "hue": 0,
+        "luminance": 0,
+        "saturation": 0
+      },
+      "reds": {
+        "hue": 0,
+        "luminance": 0,
+        "saturation": 0
+      },
+      "yellows": {
+        "hue": 0,
+        "luminance": 0,
+        "saturation": 0
+      }
+    },
+    "lumaNoiseReduction": 0,
+    "lutData": null,
+    "lutIntensity": 100,
+    "lutName": null,
+    "lutPath": null,
+    "lutSize": 0,
+    "masks": [
+      {
+        "adjustments": {
+          "blacks": 0,
+          "brightness": 0,
+          "clarity": 0,
+          "colorGrading": {
+            "balance": 0,
+            "blending": 50,
+            "highlights": {
+              "hue": 0,
+              "luminance": 0,
+              "saturation": 0
+            },
+            "midtones": {
+              "hue": 0,
+              "luminance": 0,
+              "saturation": 0
+            },
+            "shadows": {
+              "hue": 0,
+              "luminance": 0,
+              "saturation": 0
+            }
+          },
+          "colorNoiseReduction": 0,
+          "contrast": 0,
+          "curves": {
+            "blue": [
+              {
+                "x": 0,
+                "y": 0
+              },
+              {
+                "x": 255,
+                "y": 255
+              }
+            ],
+            "green": [
+              {
+                "x": 0,
+                "y": 0
+              },
+              {
+                "x": 255,
+                "y": 255
+              }
+            ],
+            "luma": [
+              {
+                "x": 0,
+                "y": 0
+              },
+              {
+                "x": 255,
+                "y": 255
+              }
+            ],
+            "red": [
+              {
+                "x": 0,
+                "y": 0
+              },
+              {
+                "x": 255,
+                "y": 255
+              }
+            ]
+          },
+          "dehaze": 0,
+          "exposure": 0,
+          "highlights": 0,
+          "hsl": {
+            "aquas": {
+              "hue": 0,
+              "luminance": 0,
+              "saturation": 0
+            },
+            "blues": {
+              "hue": 0,
+              "luminance": 0,
+              "saturation": 0
+            },
+            "greens": {
+              "hue": 0,
+              "luminance": 0,
+              "saturation": 0
+            },
+            "magentas": {
+              "hue": 0,
+              "luminance": 0,
+              "saturation": 0
+            },
+            "oranges": {
+              "hue": 0,
+              "luminance": 0,
+              "saturation": 0
+            },
+            "purples": {
+              "hue": 0,
+              "luminance": 0,
+              "saturation": 0
+            },
+            "reds": {
+              "hue": 0,
+              "luminance": 0,
+              "saturation": 0
+            },
+            "yellows": {
+              "hue": 0,
+              "luminance": 0,
+              "saturation": 0
+            }
+          },
+          "lumaNoiseReduction": 0,
+          "saturation": 0,
+          "sectionVisibility": {
+            "basic": true,
+            "color": true,
+            "curves": true,
+            "details": true,
+            "effects": true
+          },
+          "shadows": 0,
+          "sharpness": 0,
+          "structure": 0,
+          "temperature": 0,
+          "tint": 0,
+          "vibrance": 0,
+          "whites": 0
+        },
+        "id": "3cb61e6e-f919-4508-bc0d-bae1bc8c6844",
+        "invert": false,
+        "name": "Mask 1",
+        "opacity": 100,
+        "subMasks": [
+          {
+            "id": "ec470bc3-91c8-47d1-97de-e5c136bf9895",
+            "mode": "additive",
+            "parameters": {
+              "centerX": 1000,
+              "centerY": 1500,
+              "feather": 0.5,
+              "radiusX": 500,
+              "radiusY": 500,
+              "rotation": 0
+            },
+            "type": "radial",
+            "visible": true
+          }
+        ],
+        "visible": true
+      }
+    ],
+    "negativeBlueBalance": 0,
+    "negativeGreenBalance": 0,
+    "negativeRedBalance": 0,
+    "orientationSteps": 0,
+    "rating": 0,
+    "rotation": 0,
+    "saturation": 0,
+    "sectionVisibility": {
+      "basic": true,
+      "color": true,
+      "curves": true,
+      "details": true,
+      "effects": true
+    },
+    "shadows": 0,
+    "sharpness": 0,
+    "showClipping": false,
+    "structure": 0,
+    "temperature": 0,
+    "tint": 0,
+    "toneMapper": "basic",
+    "vibrance": 0,
+    "vignetteAmount": 0,
+    "vignetteFeather": 50,
+    "vignetteMidpoint": 50,
+    "vignetteRoundness": 0,
+    "whites": 0
+  },
+  "tags": null
+}
